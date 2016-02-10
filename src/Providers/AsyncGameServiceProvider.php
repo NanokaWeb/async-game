@@ -65,6 +65,10 @@ class AsyncGameServiceProvider extends LaravelServiceProvider {
         $this->publishes([$configPath => config_path('api.php')]);
         $this->mergeConfigFrom($configPath, 'api');
 
+        $configPath = __DIR__ . '/../../config/cors.php';
+        $this->publishes([$configPath => config_path('cors.php')]);
+        $this->mergeConfigFrom($configPath, 'cors');
+
     }
 
     private function handleTranslations() {

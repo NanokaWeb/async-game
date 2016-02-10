@@ -1,7 +1,7 @@
 <?php
 
 $api = app('Dingo\Api\Routing\Router');
-$api->version('v1', ['middleware' => 'api.throttle', 'limit' => 100, 'expires' => 5], function ($api) {
+$api->version('v1', ['middleware' => ['api.throttle', 'cors'], 'limit' => 100, 'expires' => 5], function ($api) {
     $api->post('v1/auth/login', 'NanokaWeb\AsyncGame\Api\V1\Controllers\AuthController@login');
     $api->post('v1/auth/signup', 'NanokaWeb\AsyncGame\Api\V1\Controllers\AuthController@signup');
     $api->post('v1/auth/recovery', 'NanokaWeb\AsyncGame\Api\V1\Controllers\AuthController@recovery');
@@ -9,7 +9,7 @@ $api->version('v1', ['middleware' => 'api.throttle', 'limit' => 100, 'expires' =
 });
 
 // Need auth
-$api->version('v1', ['middleware' => ['api.auth', 'api.throttle'], 'limit' => 100, 'expires' => 5], function ($api) {
+$api->version('v1', ['middleware' => ['api.auth', 'api.throttle', 'cors'], 'limit' => 100, 'expires' => 5], function ($api) {
 
     $api->group([
         'namespace'  => 'NanokaWeb\AsyncGame\Api\V1\Controllers',
