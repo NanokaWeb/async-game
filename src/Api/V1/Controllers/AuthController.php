@@ -37,9 +37,6 @@ class AuthController extends Controller
      * @apiParam {String} email               Email of the User.
      * @apiParam {String} Password            Password of the User.
      *
-     * @apiExample {curl} Example usage:
-     *     curl -i https://asyncgame.nanoka.fr/api/v1/auth/login -X POST -d "email=john.doe@nanoka.fr&password=mypassword"
-     *
      * @apiSuccess {String}   token      Authentication token.
      *
      * @apiUse ApiLimitError
@@ -75,9 +72,6 @@ class AuthController extends Controller
      * @apiParam {String} Password            Password of the User.
      * @apiParam {String} first_name          Firstname of the User.
      * @apiParam {String} last_name           Lastname of the User.
-     *
-     * @apiExample {curl} Example usage:
-     *     curl -i https://asyncgame.nanoka.fr/api/v1/auth/signup -X POST -d "email=john.doe@nanoka.fr&password=mypassword&first_name=John&last_name=Doe"
      *
      * @apiSuccess {String}   token      Authentication token.
      *

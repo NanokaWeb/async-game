@@ -26,9 +26,6 @@ class MeController extends UserController
      * @apiGroup          User Basic
      * @apiPermission     User
      *
-     * @apiExample {curl} Example usage:
-     *     curl -i https://asyncgame.nanoka.fr/api/v1/me
-     *
      * @apiSuccess {Object} data                  User profile information.
      * @apiSuccess {Number} data.id               Id of the User.
      * @apiSuccess {String} data.first_name       Firstname of the User.
@@ -77,11 +74,6 @@ class MeController extends UserController
      * @apiParam {String} picture          Profile picture url of the User.
      * @apiParam {String} email            Email of the User.
      *
-     * @apiExample {curl} Example usage:
-     *     curl -i https://asyncgame.nanoka.fr/api/v1/me -X PUT -d "first_name=John&last_name=Doe&facebook_user_id=75452212&picture=http://lorempixel.com/200/200/?85224"
-     * @apiExample {curl} Example usage with POST HTTP method (useful for client which support only GET and POST):
-     *     curl -i https://asyncgame.nanoka.fr/api/v1/me -X POST -H "X-HTTP-Method-Override: PUT" -d "first_name=John&last_name=Doe&facebook_user_id=75452212&picture=http://lorempixel.com/200/200/?85224"
-     *
      * @apiSuccess {Object}   data                  User profile information.
      * @apiSuccess {Number}   data.id               Id of the User.
      * @apiSuccess {String}   data.first_name       Firstname of the User.
@@ -125,11 +117,6 @@ class MeController extends UserController
      *
      * @apiParam {Number} nb               Number of coins to add or remove.
      *
-     * @apiExample {curl} Example add usage:
-     *     curl -i https://asyncgame.nanoka.fr/api/v1/me/coins -X POST -d "nb=3"
-     * @apiExample {curl} Example remove usage:
-     *     curl -i https://asyncgame.nanoka.fr/api/v1/me/coins -X POST -d "nb=-2"
-     *
      * @apiSuccess {Object}   data       User coins information.
      * @apiSuccess {Number}   data.coins Coins of the User.
      *
@@ -156,9 +143,6 @@ class MeController extends UserController
      * @apiPermission     User
      *
      * @apiParam {Number} nb Number of opponents to get.
-     *
-     * @apiExample {curl} Example usage:
-     *     curl -i https://asyncgame.nanoka.fr/api/v1/me/opponents/4
      *
      * @apiSuccess {Object[]} data            User profile information.
      * @apiSuccess {String}   data.first_name Firstname of the User.
