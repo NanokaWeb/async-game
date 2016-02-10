@@ -1,0 +1,22 @@
+{
+  "name": "nanokaweb/async-game",
+  "authors": [
+    {
+      "name": "Monnot Stéphane",
+      "email": "monnot.stephane@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "NanokaWeb\\AsyncGame\\": "src"
+    }
+  },
+  "require": {
+    "dingo/api": "1.0.x@dev",
+    "tymon/jwt-auth": "0.5.*",
+    "kirkbushell/eloquence": "~2.0"
+  },
+  "require-dev": {
+    "fzaninotto/faker": "~1.4"
+  }
+}
