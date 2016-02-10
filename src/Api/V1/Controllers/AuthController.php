@@ -63,7 +63,7 @@ class AuthController extends Controller
      *
      * @return Response
      *
-     * @api               {post} /v1/auth/login User Signup
+     * @api               {post} /v1/auth/signup User Signup
      * @apiVersion        1.0.0
      * @apiName           AuthSignup
      * @apiGroup          Authentication
