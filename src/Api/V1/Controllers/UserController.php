@@ -65,7 +65,7 @@ class UserController extends Controller
      *             "first_name": "John",
      *             "last_name": "Doe",
      *             "facebook_user_id": 122525564,
-     *             "picture": "http:\/\/lorempixel.com\/200\/200\/?44520"
+     *             "picture": "http:\/\/lorempixel.com\/200\/200\/?44520",
      *             "coins": "14"
      *         }
      *     }
@@ -122,7 +122,8 @@ class UserController extends Controller
      *             "first_name": "John",
      *             "last_name": "Doe",
      *             "facebook_user_id": 75452212,
-     *             "picture": "http:\/\/lorempixel.com\/200\/200\/?85224"
+     *             "picture": "http:\/\/lorempixel.com\/200\/200\/?85224",
+     *             "coins": "14"
      *         }
      *     }
      *
@@ -178,7 +179,8 @@ class UserController extends Controller
      *             "first_name": "John",
      *             "last_name": "Doe",
      *             "facebook_user_id": 75452212,
-     *             "picture": "http:\/\/lorempixel.com\/200\/200\/?85224"
+     *             "picture": "http:\/\/lorempixel.com\/200\/200\/?85224",
+     *             "coins": "14"
      *         }
      *     }
      *

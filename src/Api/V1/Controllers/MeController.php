@@ -42,7 +42,7 @@ class MeController extends UserController
      *             "first_name": "John",
      *             "last_name": "Doe",
      *             "facebook_user_id": 122525564,
-     *             "picture": "http:\/\/lorempixel.com\/200\/200\/?44520"
+     *             "picture": "http:\/\/lorempixel.com\/200\/200\/?44520",
      *             "coins": "14"
      *         }
      *     }
