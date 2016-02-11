@@ -1,11 +1,18 @@
 <?php
 
 $api = app('Dingo\Api\Routing\Router');
+
+// Authentification routes
 $api->version('v1', ['middleware' => ['api.throttle', 'cors'], 'limit' => 100, 'expires' => 5], function ($api) {
-    $api->post('v1/auth/login', 'NanokaWeb\AsyncGame\Api\V1\Controllers\AuthController@login');
+    // Auth email / password
     $api->post('v1/auth/signup', 'NanokaWeb\AsyncGame\Api\V1\Controllers\AuthController@signup');
-    $api->post('v1/auth/recovery', 'NanokaWeb\AsyncGame\Api\V1\Controllers\AuthController@recovery');
-    $api->post('v1/auth/reset', 'NanokaWeb\AsyncGame\Api\V1\Controllers\AuthController@reset');
+    $api->post('v1/auth/login', 'NanokaWeb\AsyncGame\Api\V1\Controllers\AuthController@login');
+
+    // Auth Facebook token
+    $api->post('v1/auth/fblogin', 'NanokaWeb\AsyncGame\Api\V1\Controllers\AuthController@fblogin');
+
+//    $api->post('v1/auth/recovery', 'NanokaWeb\AsyncGame\Api\V1\Controllers\AuthController@recovery');
+//    $api->post('v1/auth/reset', 'NanokaWeb\AsyncGame\Api\V1\Controllers\AuthController@reset');
 });
 
 // Need auth

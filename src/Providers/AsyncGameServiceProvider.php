@@ -2,9 +2,13 @@
 
 namespace NanokaWeb\AsyncGame\Providers;
 
+use Barryvdh\Cors\ServiceProvider as BarryvdhCorsServiceProvider;
+use Dingo\Api\Provider\LaravelServiceProvider as LaravelDingoApiServiceProvider;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
 use NanokaWeb\AsyncGame\Api\V1\Middleware\CheckRole;
+use SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider;
+use Tymon\JWTAuth\Providers\JWTAuthServiceProvider;
 
 class AsyncGameServiceProvider extends LaravelServiceProvider {
 
@@ -37,9 +41,10 @@ class AsyncGameServiceProvider extends LaravelServiceProvider {
     public function register() {
         // Bind any implementations.
         $this->handleConfigs();
-        $this->app->register(\Dingo\Api\Provider\LaravelServiceProvider::class);
-        $this->app->register(\Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class);
-        $this->app->register(\Dingo\Api\Provider\LaravelServiceProvider::class);
+        $this->app->register(JWTAuthServiceProvider::class);
+        $this->app->register(LaravelDingoApiServiceProvider::class);
+        $this->app->register(LaravelFacebookSdkServiceProvider::class);
+        $this->app->register(BarryvdhCorsServiceProvider::class);
 
     }
 

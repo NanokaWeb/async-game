@@ -2,8 +2,10 @@
 
 namespace NanokaWeb\AsyncGame\Api\V1\Controllers;
 
+use NanokaWeb\AsyncGame\Api\V1\Requests\FbLoginUserRequest;
 use NanokaWeb\AsyncGame\Api\V1\Requests\LoginUserRequest;
 use NanokaWeb\AsyncGame\Api\V1\Requests\SignupUserRequest;
+use SammyK\LaravelFacebookSdk\LaravelFacebookSdk;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Validator;
 use Config;
@@ -152,5 +154,45 @@ class AuthController extends Controller
             default:
                 return $this->response->error('could_not_reset_password', 500);
         }
+    }
+
+    /**
+     * Facebook Authentication login.
+     *
+     * @param  FbLoginUserRequest   $request
+     *
+     * @return Response
+     *
+     * @api               {post} /v1/auth/fblogin User Login with Facebook token
+     * @apiVersion        1.0.0
+     * @apiName           AuthFBLogin
+     * @apiGroup          Authentication
+     *
+     * @apiParam {String} token            The facebook user access token.
+     *
+     * @apiSuccess {String}   token      Authentication token.
+     *
+     * @apiUse ApiLimitError
+     */
+    public function fblogin(FbLoginUserRequest $request, LaravelFacebookSdk $fb)
+    {
+        $token = $request->input('token');
+        $fb->setDefaultAccessToken($token);
+        $response = $fb->get('/me?fields=id,first_name,last_name,email,picture.width(120).height(120)');
+
+        // Convert the response to a `Facebook/GraphNodes/GraphUser` collection
+        $facebookUser = $response->getGraphUser();
+
+        $user = User::createOrUpdateGraphNode($facebookUser);
+
+        try {
+            if (! $token = JWTAuth::fromUser($user)) {
+                return $this->response->errorUnauthorized();
+            }
+        } catch (JWTException $e) {
+            return $this->response->error('could_not_create_token', 500);
+        }
+
+        return response()->json(compact('token'));
     }
 }

@@ -6,12 +6,23 @@ use Eloquence\Behaviours\CamelCasing;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use NanokaWeb\AsyncGame\Auth\Roleable;
 use NanokaWeb\AsyncGame\Contracts\Auth\Roleable as RoleableContract;
+use SammyK\LaravelFacebookSdk\SyncableGraphNodeTrait;
 
 class User extends Authenticatable implements RoleableContract
 {
-    use Roleable;
+    use Roleable, SyncableGraphNodeTrait;
 
     protected $table = 'async_game_users';
+
+    /**
+     * The graph node attributes aliases
+     *
+     * @var array
+     */
+    protected static $graph_node_field_aliases = [
+        'id'          => 'facebook_user_id',
+        'picture.url' => 'picture',
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -26,6 +37,13 @@ class User extends Authenticatable implements RoleableContract
         'picture',
         'password',
     ];
+
+    /**
+     * The facebook attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected static $graph_node_fillable_fields = ['first_name', 'last_name', 'email', 'picture'];
 
     /**
      * The attributes that should be visible in arrays.
