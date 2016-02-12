@@ -86,6 +86,7 @@ class AuthController extends Controller
         $hasToReleaseToken = Config::get('async-game.signup_token_release');
 
         $userData = $request->only($signupFields);
+        $userData['name'] = $userData['first_name'] . ' ' . $userData['last_name'];
 
         User::unguard();
         $user = User::create($userData);
@@ -179,7 +180,7 @@ class AuthController extends Controller
     {
         $token = $request->input('token');
         $fb->setDefaultAccessToken($token);
-        $response = $fb->get('/me?fields=id,first_name,last_name,email,picture.width(120).height(120)');
+        $response = $fb->get('/me?fields=id,name,first_name,last_name,email,picture.width(120).height(120)');
 
         // Convert the response to a `Facebook/GraphNodes/GraphUser` collection
         $facebookUser = $response->getGraphUser();
@@ -220,6 +221,15 @@ class AuthController extends Controller
         $deviceId = $request->input('id');
 
         $user = User::firstOrCreate(['device_id' => $deviceId]);
+
+        if ($user->name == '') {
+            // First connection, we generate a name
+            $guestCount = User::whereNotNull('device_id')->count();
+            // We add 50 to start from 50 and avoid like Guest 1 or guest 15, it can be frustrating
+            $guestCount += 50;
+            $user->name = 'Guest ' . $guestCount;
+            $user->save();
+        }
 
         try {
             if (! $token = JWTAuth::fromUser($user)) {

@@ -36,6 +36,8 @@ class User extends Authenticatable implements RoleableContract
         'email',
         'picture',
         'password',
+        'name',
+        'device_id',
     ];
 
     /**
@@ -43,7 +45,7 @@ class User extends Authenticatable implements RoleableContract
      *
      * @var array
      */
-    protected static $graph_node_fillable_fields = ['first_name', 'last_name', 'email', 'picture'];
+    protected static $graph_node_fillable_fields = ['first_name', 'last_name', 'email', 'picture', 'name'];
 
     /**
      * The attributes that should be visible in arrays.
@@ -57,6 +59,7 @@ class User extends Authenticatable implements RoleableContract
         'picture',
         'facebook_user_id',
         'coins',
+        'name',
     ];
 
     /**
