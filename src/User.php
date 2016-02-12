@@ -71,4 +71,9 @@ class User extends Authenticatable implements RoleableContract
     {
         $this->attributes['password'] = \Hash::make($value);
     }
+
+    public function games()
+    {
+        return $this->hasMany('NanokaWeb\AsyncGame\Game');
+    }
 }
