@@ -2,6 +2,7 @@
 
 namespace NanokaWeb\AsyncGame\Api\V1\Controllers;
 
+use NanokaWeb\AsyncGame\Api\V1\Requests\DeviceLoginUserRequest;
 use NanokaWeb\AsyncGame\Api\V1\Requests\FbLoginUserRequest;
 use NanokaWeb\AsyncGame\Api\V1\Requests\LoginUserRequest;
 use NanokaWeb\AsyncGame\Api\V1\Requests\SignupUserRequest;
@@ -174,7 +175,7 @@ class AuthController extends Controller
      *
      * @apiUse ApiLimitError
      */
-    public function fblogin(FbLoginUserRequest $request, LaravelFacebookSdk $fb)
+    public function fbLogin(FbLoginUserRequest $request, LaravelFacebookSdk $fb)
     {
         $token = $request->input('token');
         $fb->setDefaultAccessToken($token);
@@ -184,6 +185,41 @@ class AuthController extends Controller
         $facebookUser = $response->getGraphUser();
 
         $user = User::createOrUpdateGraphNode($facebookUser);
+
+        try {
+            if (! $token = JWTAuth::fromUser($user)) {
+                return $this->response->errorUnauthorized();
+            }
+        } catch (JWTException $e) {
+            return $this->response->error('could_not_create_token', 500);
+        }
+
+        return response()->json(compact('token'));
+    }
+
+    /**
+     * Device Authentication login.
+     *
+     * @param  DeviceLoginUserRequest   $request
+     *
+     * @return Response
+     *
+     * @api               {post} /v1/auth/devicelogin User Login with device
+     * @apiVersion        1.0.0
+     * @apiName           AuthDeviceLogin
+     * @apiGroup          Authentication
+     *
+     * @apiParam {String} id            The unique device identifier.
+     *
+     * @apiSuccess {String}   token      Authentication token.
+     *
+     * @apiUse ApiLimitError
+     */
+    public function deviceLogin(DeviceLoginUserRequest $request, LaravelFacebookSdk $fb)
+    {
+        $deviceId = $request->input('id');
+
+        $user = User::firstOrCreate(['device_id' => $deviceId]);
 
         try {
             if (! $token = JWTAuth::fromUser($user)) {

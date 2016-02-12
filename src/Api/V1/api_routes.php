@@ -9,7 +9,10 @@ $api->version('v1', ['middleware' => ['api.throttle', 'cors'], 'limit' => 100, '
     $api->post('v1/auth/login', 'NanokaWeb\AsyncGame\Api\V1\Controllers\AuthController@login');
 
     // Auth Facebook token
-    $api->post('v1/auth/fblogin', 'NanokaWeb\AsyncGame\Api\V1\Controllers\AuthController@fblogin');
+    $api->post('v1/auth/fblogin', 'NanokaWeb\AsyncGame\Api\V1\Controllers\AuthController@fbLogin');
+
+    // Auth Device
+    $api->post('v1/auth/devicelogin', 'NanokaWeb\AsyncGame\Api\V1\Controllers\AuthController@deviceLogin');
 
 //    $api->post('v1/auth/recovery', 'NanokaWeb\AsyncGame\Api\V1\Controllers\AuthController@recovery');
 //    $api->post('v1/auth/reset', 'NanokaWeb\AsyncGame\Api\V1\Controllers\AuthController@reset');
