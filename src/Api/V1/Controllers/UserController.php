@@ -47,28 +47,9 @@ class UserController extends Controller
      * @apiParam {Number} id Users unique ID.
      *
      * @apiExample {curl} Example usage:
-     *     curl -i https://asyncgame.nanoka.fr/api/v1/users/2
+     *     curl -i https://asyncgame.nanoka.fr/api/v1/users/4
      *
-     * @apiSuccess {Object} data                  User profile information.
-     * @apiSuccess {Number} data.id               Id of the User.
-     * @apiSuccess {String} data.first_name       Firstname of the User.
-     * @apiSuccess {String} data.last_name        Lastname of the User.
-     * @apiSuccess {Number} data.facebook_user_id Facebook id of the User.
-     * @apiSuccess {String} data.picture          Profile picture url of the User.
-     * @apiSuccess {Number} data.coins            Coins of the User.
-     *
-     * @apiSuccessExample Success-Response:
-     *     HTTP/1.1 200 OK
-     *     {
-     *         "data": {
-     *             "id": 1,
-     *             "first_name": "John",
-     *             "last_name": "Doe",
-     *             "facebook_user_id": 122525564,
-     *             "picture": "http:\/\/lorempixel.com\/200\/200\/?44520",
-     *             "coins": "14"
-     *         }
-     *     }
+     * @apiUse UserSuccess
      *
      * @apiUse UserNotFoundError
      * @apiUse ApiLimitError
@@ -106,26 +87,7 @@ class UserController extends Controller
      * @apiExample {curl} Example usage:
      *     curl -i https://asyncgame.nanoka.fr/api/v1/users -d "first_name=John&last_name=Doe&facebook_user_id=75452212&picture=http://lorempixel.com/200/200/?85224"
      *
-     * @apiSuccess {Object}   data                  User profile information.
-     * @apiSuccess {Number}   data.id               Id of the User.
-     * @apiSuccess {String}   data.first_name       Firstname of the User.
-     * @apiSuccess {String}   data.last_name        Lastname of the User.
-     * @apiSuccess {Number}   data.facebook_user_id Facebook id of the User.
-     * @apiSuccess {String}   data.picture          Profile picture url of the User.
-     * @apiSuccess {Number}   data.coins            Coins of the User.
-     *
-     * @apiSuccessExample Success-Response:
-     *     HTTP/1.1 200 OK
-     *     {
-     *         "data": {
-     *             "id": 1,
-     *             "first_name": "John",
-     *             "last_name": "Doe",
-     *             "facebook_user_id": 75452212,
-     *             "picture": "http:\/\/lorempixel.com\/200\/200\/?85224",
-     *             "coins": "14"
-     *         }
-     *     }
+     * @apiUse UserSuccess
      *
      * @apiUse ApiLimitError
      */
@@ -163,26 +125,7 @@ class UserController extends Controller
      * @apiExample {curl} Example usage with POST HTTP method (useful for client which support only GET and POST):
      *     curl -i https://asyncgame.nanoka.fr/api/v1/users/1 -X POST -H "X-HTTP-Method-Override: PUT" -d "first_name=John&last_name=Doe&facebook_user_id=75452212&picture=http://lorempixel.com/200/200/?85224"
      *
-     * @apiSuccess {Object}   data                  User profile information.
-     * @apiSuccess {Number}   data.id               Id of the User.
-     * @apiSuccess {String}   data.first_name       Firstname of the User.
-     * @apiSuccess {String}   data.last_name        Lastname of the User.
-     * @apiSuccess {Number}   data.facebook_user_id Facebook id of the User.
-     * @apiSuccess {String}   data.picture          Profile picture url of the User.
-     * @apiSuccess {Number}   data.coins            Coins of the User.
-     *
-     * @apiSuccessExample Success-Response:
-     *     HTTP/1.1 200 OK
-     *     {
-     *         "data": {
-     *             "id": 1,
-     *             "first_name": "John",
-     *             "last_name": "Doe",
-     *             "facebook_user_id": 75452212,
-     *             "picture": "http:\/\/lorempixel.com\/200\/200\/?85224",
-     *             "coins": "14"
-     *         }
-     *     }
+     * @apiUse UserSuccess
      *
      * @apiUse UserNotFoundError
      * @apiUse ApiLimitError
