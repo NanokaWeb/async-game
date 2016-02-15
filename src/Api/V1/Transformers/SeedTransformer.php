@@ -2,7 +2,7 @@
 
 namespace NanokaWeb\AsyncGame\Api\V1\Transformers;
 
-class OpponentTransformer extends Transformer
+class SeedTransformer extends Transformer
 {
     /**
      * Fields that can be included if requested.
@@ -10,9 +10,7 @@ class OpponentTransformer extends Transformer
      * @var array
      */
     protected $availableFields = [
-        'first_name',
-        'last_name',
-        'picture',
+        'id'
     ];
 
     /**
@@ -21,8 +19,6 @@ class OpponentTransformer extends Transformer
      * @var array
      */
     protected $defaultFields = [
-        'first_name',
-        'last_name',
-        'picture',
+        'id'
     ];
 }
