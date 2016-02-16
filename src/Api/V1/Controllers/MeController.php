@@ -23,14 +23,14 @@ class MeController extends UserController
      * @api               {get} /v1/me Request User information
      * @apiVersion        1.0.0
      * @apiName           GetMe
-     * @apiGroup          User Basic
+     * @apiGroup          User_Basic
      * @apiPermission     User
      *
      * @apiUse UserSuccess
      *
      * @apiUse ApiLimitError
      */
-    public function show($id = null)
+    public function showMe($id = null)
     {
         $id = $this->request->user()->id;
         return parent::show($id);
@@ -46,7 +46,7 @@ class MeController extends UserController
      * @api               {put} /v1/me Update User information
      * @apiVersion        1.0.0
      * @apiName           UpdateMe
-     * @apiGroup          User Basic
+     * @apiGroup          User_Basic
      * @apiPermission     User
      *
      * @apiParam {String} first_name       Firstname of the User.
@@ -59,7 +59,7 @@ class MeController extends UserController
      *
      * @apiUse ApiLimitError
      */
-    public function update($id = null, StoreUserRequest $request)
+    public function updateMe(StoreUserRequest $request)
     {
         $id = $this->request->user()->id;
         return parent::update($id, $request);
@@ -75,7 +75,7 @@ class MeController extends UserController
      * @api               {post} /v1/me/coins Update User coins number information
      * @apiVersion        1.0.0
      * @apiName           UpdateMyCoins
-     * @apiGroup          User Extra
+     * @apiGroup          User_Extra
      * @apiPermission     User
      *
      * @apiParam {Number} nb               Number of coins to add or remove.
@@ -85,7 +85,7 @@ class MeController extends UserController
      *
      * @apiUse ApiLimitError
      */
-    public function updateCoins($id = null, UpdateUserCoinsRequest $request)
+    public function updateCoinsMe(UpdateUserCoinsRequest $request)
     {
         $id = $this->request->user()->id;
         return parent::updateCoins($id, $request);
@@ -94,7 +94,6 @@ class MeController extends UserController
     /**
      * Display random opponents users for the user.
      *
-     * @param  int $id
      * @param  int $nb
      *
      * @return Response
@@ -102,7 +101,7 @@ class MeController extends UserController
      * @api               {get} /v1/me/opponents/:nb Request random opponents information for the user
      * @apiVersion        1.0.0
      * @apiName           GetMyOpponents
-     * @apiGroup          User Extra
+     * @apiGroup          User_Extra
      * @apiPermission     User
      *
      * @apiParam {Number} nb Number of opponents to get.
@@ -141,7 +140,7 @@ class MeController extends UserController
      *
      * @apiUse ApiLimitError
      */
-    public function opponents($id = null, $nb)
+    public function opponentsMe($nb)
     {
         $id = $this->request->user()->id;
         return parent::opponents($id, $nb);
