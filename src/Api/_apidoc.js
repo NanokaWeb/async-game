@@ -44,7 +44,47 @@
  *         }
  *     }
  */
-
+/**
+ * @apiDefine GamesSuccess
+ * @apiSuccess {Object[]} data                  Game information.
+ * @apiSuccess {Number}   data.id               Id of the Game.
+ * @apiSuccess {Object}   data.data             Data of the Game (JSON Format).
+ * @apiSuccess {Number}   data.score            Score of the Game.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *        "data":[
+ *           {
+ *              "id": "1",
+ *              "data": {
+ *                  "someData"
+ *              },
+ *              "score": 20
+ *           },
+ *           {
+ *              "id": "2",
+ *              "data": {
+ *                  "someOtherData"
+ *              },
+ *              "score": 35
+ *           }
+ *        ]
+ *     }
+ */
+/**
+ * @apiDefine SeedsSuccess
+ * @apiSuccess {Object[]} data                  Seed information.
+ * @apiSuccess {Number}   data.id               Id of the seed.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *         "data": {
+ *             "id": 6
+ *         }
+ *     }
+ */
 // ------------------------------------------------------------------------------------------
 // Current Errors.
 // ------------------------------------------------------------------------------------------
