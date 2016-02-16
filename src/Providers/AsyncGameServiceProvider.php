@@ -26,7 +26,6 @@ class AsyncGameServiceProvider extends LaravelServiceProvider {
      */
     public function boot(Router $router) {
         $this->handleMigrations();
-        $this->handleSeeds();
         // $this->handleViews();
         // $this->handleTranslations();
         $this->handleRouteMiddlewares($router);
@@ -87,14 +86,8 @@ class AsyncGameServiceProvider extends LaravelServiceProvider {
 
     private function handleMigrations() {
         $this->publishes([
-            __DIR__ . '/../../database/migrations' => base_path('database/migrations')
+            __DIR__ . '/../migrations' => base_path('database/migrations')
         ], 'migrations');
-    }
-
-    private function handleSeeds() {
-        $this->publishes([
-            __DIR__ . '/../../database/seeds' => base_path('database/seeds')
-        ], 'seeds');
     }
 
     private function handleRouteMiddlewares($router) {
