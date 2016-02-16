@@ -13,7 +13,7 @@ class NanokaWebAsyncGameAddNameColumnsToUsersTable extends Migration
     public function up()
     {
         Schema::table('async_game_users', function (Blueprint $table) {
-            $table->index('device_id');
+            $table->index('device_id', 'facebook_user_id');
         });
     }
 
@@ -25,9 +25,7 @@ class NanokaWebAsyncGameAddNameColumnsToUsersTable extends Migration
     public function down()
     {
         Schema::table('async_game_users', function (Blueprint $table) {
-            $table->dropIndex(
-                'device_id'
-            );
+            $table->dropIndex('device_id', 'facebook_user_id');
         });
     }
 }

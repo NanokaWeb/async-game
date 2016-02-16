@@ -1,9 +1,12 @@
 <?php
 
+namespace NanokaWeb\AsyncGame\Seeds;
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
+use NanokaWeb\AsyncGame\Seeds\InitialData\RolesTableSeeder;
 
-class NanokaWebAsyncGameDatabaseSeeder extends Seeder
+class DatabaseSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +17,7 @@ class NanokaWebAsyncGameDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        $this->call(NanokaWebAsyncGameRolesTableSeeder::class);
+        $this->call(RolesTableSeeder::class);
 
         Model::reguard();
     }

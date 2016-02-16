@@ -15,7 +15,7 @@ class NanokaWebAsyncGameCreateGamesTable extends Migration
         Schema::create('async_game_games', function (Blueprint $table) {
             $table->increments('id');
             $table->binary('data');
-            $table->binary('score');
+            $table->integer('score');
             $table->timestamps();
             $table->unsignedInteger('seed_id');
             $table->unsignedInteger('user_id');
