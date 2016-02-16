@@ -185,6 +185,16 @@ class AuthController extends Controller
         // Convert the response to a `Facebook/GraphNodes/GraphUser` collection
         $facebookUser = $response->getGraphUser();
 
+        // If the user is already login
+        if ($user = app('Dingo\Api\Auth\Auth')->user()) {
+            // And his fb id is not still set
+            if ($user->facebook_user_id == 0) {
+                // We convert his account to fb account
+                $user->facebook_user_id = $facebookUser->getId();
+                $user->save();
+            }
+        }
+
         $user = User::createOrUpdateGraphNode($facebookUser);
 
         try {
@@ -220,7 +230,7 @@ class AuthController extends Controller
     {
         $deviceId = $request->input('id');
 
-        $user = User::firstOrCreate(['device_id' => $deviceId]);
+        $user = User::firstOrCreate(['device_id' => $deviceId, 'facebook_user_id' => 0]);
 
         if ($user->name == '') {
             // First connection, we generate a name
