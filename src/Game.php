@@ -21,7 +21,7 @@ class Game extends Model
     protected $fillable = [
         'data',
         'score',
-        'user',
+        'user_id',
     ];
 
     public function user()

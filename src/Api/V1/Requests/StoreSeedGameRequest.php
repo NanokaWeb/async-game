@@ -24,7 +24,7 @@ class StoreSeedGameRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required|integer',
+            'user_id' => 'required|string',
             'data'    => 'required|json',
             'score'   => 'required|integer',
         ];

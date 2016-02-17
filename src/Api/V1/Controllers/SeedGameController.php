@@ -82,7 +82,7 @@ class SeedGameController extends Controller
      */
     public function store($seedId, StoreSeedGameRequest $request)
     {
-        $user = $this->user->find(Hashids::decode($request->input('user_id')));
+        $user = $this->user->find(Hashids::decode($request->input('user_id')))->first();
         $game = new Game($request->only('data', 'score'));
         $game->user()->associate($user);
         $game = $this->seed->find($seedId)->first()->games()->save($game);
