@@ -21,4 +21,11 @@ class SeedTransformer extends Transformer
     protected $defaultFields = [
         'id'
     ];
+
+    public function transform($object)
+    {
+        $seedData        = parent::transform($object);
+        $seedData['key'] = $object->id;
+        return $seedData;
+    }
 }

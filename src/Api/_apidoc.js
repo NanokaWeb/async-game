@@ -73,12 +73,14 @@
  * @apiDefine SeedsSuccess
  * @apiSuccess {Object[]} data                  Seed information.
  * @apiSuccess {String}   data.id               Id of the seed.
+ * @apiSuccess {Number}   data.key              Key of the seed for the client generation.
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
  *     {
  *         "data": {
- *             "id": "kVvG29W8Rg"
+ *             "id": "kVvG29W8Rg",
+ *             "key": "3"
  *         }
  *     }
  */
