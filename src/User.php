@@ -4,13 +4,16 @@ namespace NanokaWeb\AsyncGame;
 
 use Eloquence\Behaviours\CamelCasing;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use NanokaWeb\AsyncGame\Hash\Tokenable;
 use NanokaWeb\AsyncGame\Auth\Roleable;
 use NanokaWeb\AsyncGame\Contracts\Auth\Roleable as RoleableContract;
 use SammyK\LaravelFacebookSdk\SyncableGraphNodeTrait;
 
 class User extends Authenticatable implements RoleableContract
 {
-    use Roleable, SyncableGraphNodeTrait;
+    use Roleable, SyncableGraphNodeTrait, Tokenable;
+
+    protected $appends = ['hashid'];
 
     protected $table = 'async_game_users';
 
@@ -54,6 +57,7 @@ class User extends Authenticatable implements RoleableContract
      */
     protected $visible = [
         'id',
+        'hashid',
         'first_name',
         'last_name',
         'picture',

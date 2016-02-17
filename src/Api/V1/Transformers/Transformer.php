@@ -46,6 +46,11 @@ abstract class Transformer extends TransformerAbstract
 
         $askedAndDefaultFields = array_intersect(array_merge($askedFields, $this->defaultFields), $this->availableFields);
 
-        return array_intersect_key($object->toArray(), array_flip($askedAndDefaultFields));
+        $forceFields = [];
+        if ($object->hashid) {
+            $forceFields['id'] = $object->hashid;
+        }
+
+        return array_intersect_key(array_merge($object->toArray(), $forceFields), array_flip($askedAndDefaultFields));
     }
 }

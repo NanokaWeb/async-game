@@ -7,6 +7,7 @@ use NanokaWeb\AsyncGame\Api\V1\Transformers\GameTransformer;
 use NanokaWeb\AsyncGame\Game;
 use NanokaWeb\AsyncGame\Seed;
 use NanokaWeb\AsyncGame\User;
+use Vinkla\Hashids\Facades\Hashids;
 
 /**
  * Class SeedGameController
@@ -46,7 +47,7 @@ class SeedGameController extends Controller
      * @apiGroup          Seeds
      * @apiPermission     User
      *
-     * @apiParam {Number} id Seed unique ID.
+     * @apiParam {String} id Seed unique ID.
      *
      * @apiUse GamesSuccess
      *
@@ -54,7 +55,7 @@ class SeedGameController extends Controller
      */
     public function index($seedId)
     {
-        $games = $this->seed->find($seedId)->games;
+        $games = $this->seed->find($seedId)->first()->games;
         return $this->response->collection($games, new GameTransformer());
     }
 
@@ -71,7 +72,7 @@ class SeedGameController extends Controller
      * @apiGroup          Seeds
      * @apiPermission     User
      *
-     * @apiParam {Number} user_id          Seed unique ID.
+     * @apiParam {String} user_id          User unique ID.
      * @apiParam {String} data             Game's data in json format.
      * @apiParam {Number} score            Game's score.
      *
@@ -81,10 +82,10 @@ class SeedGameController extends Controller
      */
     public function store($seedId, StoreSeedGameRequest $request)
     {
-        $user = $this->user->find($request->input('user_id'));
+        $user = $this->user->find(Hashids::decode($request->input('user_id')));
         $game = new Game($request->only('data', 'score'));
         $game->user()->associate($user);
-        $game = $this->seed->find($seedId)->games()->save($game);
+        $game = $this->seed->find($seedId)->first()->games()->save($game);
         return $this->response->item($game, new GameTransformer());
     }
 }

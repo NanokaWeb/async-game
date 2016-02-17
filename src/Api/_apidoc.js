@@ -8,11 +8,10 @@
 /**
  * @apiDefine UserSuccess
  * @apiSuccess {Object} data                  User profile information.
- * @apiSuccess {Number} data.id               Id of the User.
+ * @apiSuccess {String} data.id               Id of the User.
  * @apiSuccess {String} data.name             Name of the User.
  * @apiSuccess {String} data.first_name       Firstname of the User.
  * @apiSuccess {String} data.last_name        Lastname of the User.
- * @apiSuccess {Number} data.facebook_user_id Facebook id of the User.
  * @apiSuccess {String} data.picture          Profile picture url of the User.
  * @apiSuccess {Number} data.coins            Coins of the User.
  *
@@ -20,11 +19,10 @@
  *     HTTP/1.1 200 OK
  *     {
  *         "data": {
- *             "id": 4,
+ *             "id": "rAKZeEDqBO",
  *             "name": "John Doe",
  *             "first_name": "John",
  *             "last_name": "Doe",
- *             "facebook_user_id": 122525564,
  *             "picture": "http:\/\/lorempixel.com\/200\/200\/?44520",
  *             "coins": "14"
  *         }
@@ -34,11 +32,10 @@
  *     HTTP/1.1 200 OK
  *     {
  *         "data": {
- *             "id": 6,
+ *             "id": "rDKZeEZqEO",
  *             "name": "Guest 52",
  *             "first_name": "",
  *             "last_name": "",
- *             "facebook_user_id": 0,
  *             "picture": "http:\/\/lorempixel.com\/200\/200\/?44520",
  *             "coins": "14"
  *         }
@@ -47,7 +44,7 @@
 /**
  * @apiDefine GamesSuccess
  * @apiSuccess {Object[]} data                  Game information.
- * @apiSuccess {Number}   data.id               Id of the Game.
+ * @apiSuccess {String}   data.id               Id of the Game.
  * @apiSuccess {Object}   data.data             Data of the Game (JSON Format).
  * @apiSuccess {Number}   data.score            Score of the Game.
  *
@@ -56,14 +53,14 @@
  *     {
  *        "data":[
  *           {
- *              "id": "1",
+ *              "id": "1nyWgDGREY",
  *              "data": {
  *                  "someData"
  *              },
  *              "score": 20
  *           },
  *           {
- *              "id": "2",
+ *              "id": "kVZWl9GxvJ",
  *              "data": {
  *                  "someOtherData"
  *              },
@@ -75,13 +72,13 @@
 /**
  * @apiDefine SeedsSuccess
  * @apiSuccess {Object[]} data                  Seed information.
- * @apiSuccess {Number}   data.id               Id of the seed.
+ * @apiSuccess {String}   data.id               Id of the seed.
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
  *     {
  *         "data": {
- *             "id": 6
+ *             "id": "kVvG29W8Rg"
  *         }
  *     }
  */

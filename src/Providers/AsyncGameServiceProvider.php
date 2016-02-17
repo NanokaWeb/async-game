@@ -9,6 +9,7 @@ use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
 use NanokaWeb\AsyncGame\Api\V1\Middleware\CheckRole;
 use SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider;
 use Tymon\JWTAuth\Providers\JWTAuthServiceProvider;
+use Vinkla\Hashids\HashidsServiceProvider;
 
 class AsyncGameServiceProvider extends LaravelServiceProvider {
 
@@ -44,6 +45,7 @@ class AsyncGameServiceProvider extends LaravelServiceProvider {
         $this->app->register(LaravelDingoApiServiceProvider::class);
         $this->app->register(LaravelFacebookSdkServiceProvider::class);
         $this->app->register(BarryvdhCorsServiceProvider::class);
+        $this->app->register(HashidsServiceProvider::class);
 
     }
 

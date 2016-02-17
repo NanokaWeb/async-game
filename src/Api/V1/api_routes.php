@@ -1,6 +1,13 @@
 <?php
 
+use Vinkla\Hashids\Facades\Hashids;
+
 $api = app('Dingo\Api\Routing\Router');
+
+Route::bind('id', function($value, $route)
+{
+    return Hashids::decode($value);
+});
 
 // Authentification routes
 $api->version(
@@ -52,10 +59,10 @@ $api->version('v1', ['middleware' => ['api.auth', 'api.throttle', 'cors'], 'limi
         $api->get('v1/seeds/search', 'SeedController@search');
 
         $api->get('v1/seeds/{id}/games', 'SeedGameController@index')
-            ->where('id', '[0-9]+');
+            ->where('id', '[A-Za-z0-9]+');
 
         $api->post('v1/seeds/{id}/games', 'SeedGameController@store')
-            ->where('id', '[0-9]+');
+            ->where('id', '[A-Za-z0-9]+');
 
     });
 

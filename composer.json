@@ -16,7 +16,8 @@
     "tymon/jwt-auth": "0.5.*",
     "kirkbushell/eloquence": "~2.0",
     "barryvdh/laravel-cors": "^0.7.1",
-    "sammyk/laravel-facebook-sdk": "~3.0"
+    "sammyk/laravel-facebook-sdk": "~3.0",
+    "vinkla/hashids": "~2.2"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4"
