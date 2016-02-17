@@ -15,6 +15,13 @@ abstract class Transformer extends TransformerAbstract
     protected $availableFields = [];
 
     /**
+     * Include fields without needing it to be requested.
+     *
+     * @var array
+     */
+    protected $defaultFields = [];
+
+    /**
      * @return array
      */
     public function getAvailableFields()
@@ -32,13 +39,6 @@ abstract class Transformer extends TransformerAbstract
         $this->availableFields = $availableFields;
         return $this;
     }
-
-    /**
-     * Fields that can be included if requested.
-     *
-     * @var array
-     */
-    protected $defaultFields = [];
 
     public function transform($object)
     {

@@ -16,7 +16,7 @@ class GameTransformer extends Transformer
     ];
 
     /**
-     * Fields that can be included if requested.
+     * Include fields without needing it to be requested.
      *
      * @var array
      */
